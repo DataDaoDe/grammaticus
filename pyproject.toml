@@ -1,0 +1,21 @@
+[tool.poetry]
+authors = ["John Faucett <jwaterfaucett@gmail.com>"]
+description = "Conjugate and decline latin words"
+license = "MIT"
+name = "grammaticus"
+packages = [{include = "latin_conjugator"}]
+readme = "README.md"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+numpy = "^1.24.1"
+pandas = "^1.5.3"
+pydantic = "^1.10.4"
+python = "^3.10"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.1"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
