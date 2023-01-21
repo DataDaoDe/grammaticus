@@ -10,7 +10,7 @@ from grammaticus.languages.latin import nouns
 
 agricol = nouns.get_stem('agricola') # => 'agricol'
 forms = nouns.decline(agricol, declension=nouns.FIRST_DECLENSION) # returns a pandas DataFrame
-print(forms['accusative']['plural']) # => 'agricolam'
+print(forms['accusative']['plural']) # => 'agricolas'
 ```
 
 
