@@ -14,7 +14,7 @@ def test_extract_first_declension_info():
     ]
     for t in tests:
         t_stem = t[1]
-        t_form, _case_info = nouns.extract_first_declension_info(t[0])
+        t_form = nouns.extract_first_declension_stem(t[0])
         assert t_form == t_stem
 
 
