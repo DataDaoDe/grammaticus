@@ -1,34 +1,65 @@
-stem|alt_stems|gender|origin|meaning|proper_noun|irregular|irregular_endings
-augit||m|L||False|True|
-poet||m|||False|False|
-agricol||m|L|farmer|False|False|
-naut|navit|m|G|sailor|False|False|
-adven||m,f|L|foreigner, visitor from abroad; newcomer|False|False|
-pirat||m|||False|False|
-scrib||m|L|clerk, secretary, notary|False|False|
-accol||m|L|neighbor|False|False|
-adsecul||m|L|follower; servant; sycophant|False|False|
-alienigen||m|L|stranger, foreigner; foreign born|False|False|
-anguigen||m|L|offspring of a serpent|False|False|
-aurig||m|L|charioteer|False|False|
-cacul||m|L|soldier's slave or servant|False|False|
-colleg|conleg|m|L|colleague, partner in office; associate, follower|False|False|
-conviv||m|L|guest, table companion; one who lives with another|False|False|
-faenisec||m|L|mower; countryman, rustic|False|False|
-flagritrib||m|L|one who wears out whips; a whipping boy|False|False|
-fratricid||m|L|one who kills a brother; a fratricide|False|False|
-ignigen||m|L|born of fire|False|False|
-incol||m,f|L|inhabitant|False|False|
-perfug||m|L|deserter|False|False|
-plebicol||m|L|friend of the common people|False|False|
-scurr||m|L|dandy; jester, buffoon|False|False|
-rabul||m|L|unscrupulous lawyer; shyster|False|False|
-regicid||m|L|one who kills a king|False|False|
-rurigen||m,f|L|one born in the country; a rustic|False|False|
-semilix||m|L|"half sutler ""little more than a camp follower"""|False|False|
-serpentigen||m,f|L|sprung from a serpent|False|False|
-silvicol||m,f|L|inhabitant of the woodlands|False|False|
-sororicid||m|L|one who murders a sister|False|False|
-tat||m|L|daddy|False|False|
-terrigen||m,f|L|earthborn|False|False|
-transfug||m|L|deserter|False|False|
+stem|alt_stems|gender|origin|meaning|proper_noun|irregular|nom|gen|dat|acc|abl|voc
+augit||m|L|kind of precious stone|False|True|es,ae|ae,arum|ae,is|en,as|e,is|e,ae
+poet||m|G|poet|False|False||||||
+agricol||m|L|farmer|False|False||||||
+naut|navit|m|G|sailor|False|False||||||
+adven||m,f|L|foreigner, visitor from abroad; newcomer|False|False||||||
+pirat||m|G|pirate|False|False||||||
+scrib||m|L|clerk, secretary, notary|False|False||||||
+accol||m|L|neighbor|False|False||||||
+adsecul||m|L|follower; servant; sycophant|False|False||||||
+alienigen||m|L|stranger, foreigner; foreign born|False|False||||||
+anguigen||m|L|offspring of a serpent|False|False||||||
+aurig||m|L|charioteer|False|False||||||
+cacul||m|L|soldier's slave or servant|False|False||||||
+colleg|conleg|m|L|colleague, partner in office; associate, follower|False|False||||||
+conviv||m|L|guest, table companion; one who lives with another|False|False||||||
+faenisec||m|L|mower; countryman, rustic|False|False||||||
+flagritrib||m|L|one who wears out whips; a whipping boy|False|False||||||
+fratricid||m|L|one who kills a brother; a fratricide|False|False||||||
+ignigen||m|L|born of fire|False|False||||||
+incol||m,f|L|inhabitant|False|False||||||
+perfug||m|L|deserter|False|False||||||
+plebicol||m|L|friend of the common people|False|False||||||
+scurr||m|L|dandy; jester, buffoon|False|False||||||
+rabul||m|L|unscrupulous lawyer; shyster|False|False||||||
+regicid||m|L|one who kills a king|False|False||||||
+rurigen||m,f|L|one born in the country; a rustic|False|False||||||
+semilix||m|L|"half sutler ""little more than a camp follower"""|False|False||||||
+serpentigen||m,f|L|sprung from a serpent|False|False||||||
+silvicol||m,f|L|inhabitant of the woodlands|False|False||||||
+sororicid||m|L|one who murders a sister|False|False||||||
+tat||m|L|daddy|False|False||||||
+terrigen||m,f|L|earthborn|False|False||||||
+transfug||m|L|deserter|False|False||||||
+agripet||m|G|land-grabber, squatter|False|False||||||
+anachoret||m|G|anchorite|False|False||||||
+analect||m|G|dining room slave|False|False||||||
+andabat||m|G|gladiator who fought blindfolded|False|False||||||
+archipirat||m|G|chief pirate|False|False||||||
+artopt||m|G|bread pan|False|False||||||
+athlet||m|G|athlete|False|False||||||
+bibliopol||m|G|bookseller|False|False||||||
+brabeut||m|G|umpire|False|False||||||
+chorocitharist||m|G|musician who accompanies the choir with the sound of the cither|False|False||||||
+citharist||m|G|player on the cither|False|False||||||
+clept||m|G|thief|False|False||||||
+cosmet||m|G|woman's valet|False|False||||||
+danist||m|G|money lender; usurer|False|False||||||
+drapet||m|G|runaway slave|False|False||||||
+grammatist||m|G|teacher of grammar|False|False||||||
+halophant||m|G|scoundrel|False|False||||||
+hamiot||m|G|angler|False|False||||||
+hippotoxot||m|G|mounted archer|False|False||||||
+idiot||m|G|ignorant, uneducated man|False|False||||||
+lanist||m|G|trainer of gladiators|False|False||||||
+mastigi||m|G|scoundrel, rascal|False|False||||||
+myst||m|G|priest of secret rights of divine worship, priest of the mysteries|False|False||||||
+ophthalmi||m|G|a type of fish|False|True|as,ae|ae,arum|ae,is|am:an,as|a,is|a,ae
+palaestrit||m|G|a superintendent of a palaestra|False|False||||||
+pap||m|G|pope|False|False||||||
+pharmacopol||m|G|seller of drugs, a quack|False|False||||||
+pop||m|G|junior priest or temple servant|False|False||||||
+propol||m|G|retailer, huckster|False|False||||||
+tapet||m|G|draperty, tapestry|False|False||||||
+tryrannicid||m|G|slayer of a tyrant|False|False||||||
