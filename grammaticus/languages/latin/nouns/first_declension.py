@@ -1,4 +1,4 @@
-from typing import Optional, List, Any
+from typing import Optional, List, Any, Dict
 from grammaticus.utils import data_filepath
 from grammaticus.languages.latin.nouns.common import Noun
 import pandas as pd
@@ -30,17 +30,75 @@ def extract_ending(seq: str, index: int = None) -> str:
         return seq
 
 
+def _stem_ending_formatter(stem: str, s: pd.Series, idx: int = 0) -> str:
+    v = s.split(',')
+    ending = extract_ending(v[idx])
+    return '{}{}'.format(stem, ending)
+
+
 class FirstDeclensionNoun(Noun):
+
     def __init__(self, stem: str):
         self._exception = False
-        if stem in EXCEPTION_WORDS['stem'].values or EXCEPTION_WORDS['alt_stems']:
+        if (stem in EXCEPTION_WORDS['stem'].values) or (stem in EXCEPTION_WORDS['alt_stems'].values):
             self._exception = True
-            self._exception_item = EXCEPTION_WORDS[EXCEPTION_WORDS['stem']
-                                                   == stem].iloc[0]
+            if stem in EXCEPTION_WORDS['stem'].values:
+                self._exception_item = EXCEPTION_WORDS.loc[EXCEPTION_WORDS['stem']
+                                                           == stem].iloc[0]
+            elif stem in EXCEPTION_WORDS['alt_stems']:
+                self._exception_item = EXCEPTION_WORDS.loc[EXCEPTION_WORDS['alt_stems'].str.contains(
+                    stem).fillna(False)].iloc[0]
             gender = self._exception_item['gender']
         else:
             gender = 'f'
         super().__init__(stem, gender, 'I', None)
+
+    def get_case_info(self, form: str) -> Dict[Any, Any]:
+        ending = form[len(self._stem):]
+        g = {'cases': []}
+        if self._exception and self._exception_item['irregular']:
+            item = self._exception_item
+            endings = [
+                {'k': 'nom', 'v': item['nom'].split(',')},
+                {'k': 'gen', 'v': item['gen'].split(',')},
+                {'k': 'acc', 'v': item['acc'].split(',')},
+                {'k': 'dat', 'v': item['dat'].split(',')},
+                {'k': 'abl', 'v': item['abl'].split(',')},
+                {'k': 'voc', 'v': item['voc'].split(',')},
+            ]
+            for idx in range(0, len(endings)):
+                h = endings[idx]
+                case_name = h['k']
+                case_values = list(map(lambda x: x.split(":"), h['v']))
+
+                # singular values
+                i = '{}s'.format(case_name)
+                for v in case_values[0]:
+                    if ending == v:
+                        if i not in g['cases']:
+                            g['cases'].append(i)
+                # plural values
+                p = '{}p'.format(case_name)
+                for v in case_values[1]:
+                    if ending == v:
+                        if i not in g['cases']:
+                            g['cases'].append(p)
+        else:
+            for idx, row in CASE_ENDINGS.iterrows():
+                sop = 's' if idx == 'singular' else 'p'
+                if row['nominative'] == ending:
+                    g['cases'].append('nom{}'.format(sop))
+                if row['accusative'] == ending:
+                    g['cases'].append('acc{}'.format(sop))
+                if row['genitive'] == ending:
+                    g['cases'].append('gen{}'.format(sop))
+                if row['dative'] == ending:
+                    g['cases'].append('dat{}'.format(sop))
+                if row['ablative'] == ending:
+                    g['cases'].append('abl{}'.format(sop))
+                if row['vocative'] == ending:
+                    g['cases'].append('voc{}'.format(sop))
+        return g['cases']
 
     def decline(self, cmd: str) -> str:
         cmd = cmd.lower().strip()
@@ -48,53 +106,29 @@ class FirstDeclensionNoun(Noun):
         if self._exception and self._exception_item['irregular']:
             dec_info = self._exception_item
             if cmd == 'noms':
-                v = dec_info['nom'].split(',')
-                ending = extract_ending(v[0])
-                return '{}{}'.format(stem, ending)
+                return _stem_ending_formatter(stem, dec_info['nom'], 0)
             elif cmd == 'nomp':
-                v = dec_info['nom'].split(',')
-                ending = extract_ending(v[1])
-                return '{}{}'.format(stem, ending)
+                return _stem_ending_formatter(stem, dec_info['nom'], 1)
             elif cmd == 'accs':
-                v = dec_info['acc'].split(',')
-                ending = extract_ending(v[0])
-                return '{}{}'.format(stem, ending)
+                return _stem_ending_formatter(stem, dec_info['acc'], 0)
             elif cmd == 'accp':
-                v = dec_info['acc'].split(',')
-                ending = extract_ending(v[1])
-                return '{}{}'.format(stem, ending)
+                return _stem_ending_formatter(stem, dec_info['acc'], 1)
             elif cmd == 'gens':
-                v = dec_info['gen'].split(',')
-                ending = extract_ending(v[0])
-                return '{}{}'.format(stem, ending)
+                return _stem_ending_formatter(stem, dec_info['gen'], 0)
             elif cmd == 'genp':
-                v = dec_info['gen'].split(',')
-                ending = extract_ending(v[1])
-                return '{}{}'.format(stem, ending)
+                return _stem_ending_formatter(stem, dec_info['gen'], 1)
             elif cmd == 'dats':
-                v = dec_info['dat'].split(',')
-                ending = extract_ending(v[0])
-                return '{}{}'.format(stem, ending)
+                return _stem_ending_formatter(stem, dec_info['dat'], 0)
             elif cmd == 'datp':
-                v = dec_info['dat'].split(',')
-                ending = extract_ending(v[1])
-                return '{}{}'.format(stem, ending)
+                return _stem_ending_formatter(stem, dec_info['dat'], 1)
             elif cmd == 'abls':
-                v = dec_info['abl'].split(',')
-                ending = extract_ending(v[0])
-                return '{}{}'.format(stem, ending)
+                return _stem_ending_formatter(stem, dec_info['abl'], 0)
             elif cmd == 'ablp':
-                v = dec_info['abl'].split(',')
-                ending = extract_ending(v[1])
-                return '{}{}'.format(stem, ending)
+                return _stem_ending_formatter(stem, dec_info['abl'], 1)
             elif cmd == 'vocs':
-                v = dec_info['voc'].split(',')
-                ending = extract_ending(v[0])
-                return '{}{}'.format(stem, ending)
+                return _stem_ending_formatter(stem, dec_info['voc'], 0)
             elif cmd == 'vocp':
-                v = dec_info['voc'].split(',')
-                ending = extract_ending(v[1])
-                return '{}{}'.format(stem, ending)
+                return _stem_ending_formatter(stem, dec_info['voc'], 1)
         else:
             if cmd == 'noms' or cmd == 'vocs':
                 return '{}{}'.format(stem, CASE_ENDINGS['nominative']['singular'])
